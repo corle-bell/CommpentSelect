@@ -1,0 +1,12 @@
+
+Temp
+Library
+Logs
+Build
+.vs
+obj
+.vsconfig
+*.csproj
+*.sln
+.svn
+Z_Resource
