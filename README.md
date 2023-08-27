@@ -1,5 +1,5 @@
 
-# CommpentSelect
+# ComponentSelect
 
 选择脚本选择器
 
@@ -12,9 +12,9 @@
 第三个参数是类型,两种可选。下拉列表，和弹窗。
 
 # 截图
-![Image text](https://github.com/corle-bell/CommpentSelect/blob/main/Screenshoot/QQ截图20230827114033.png)
-![Image text](https://github.com/corle-bell/CommpentSelect/blob/main/Screenshoot/QQ截图20230827114117.png)
-![Image text](https://github.com/corle-bell/CommpentSelect/blob/main/Screenshoot/QQ录屏20230827114244.gif)
+![Image text](https://github.com/corle-bell/ComponentSelect/blob/main/Screenshoot/QQ截图20230827114033.png)
+![Image text](https://github.com/corle-bell/ComponentSelect/blob/main/Screenshoot/QQ截图20230827114117.png)
+![Image text](https://github.com/corle-bell/ComponentSelect/blob/main/Screenshoot/QQ录屏20230827114244.gif)
 
 
 
