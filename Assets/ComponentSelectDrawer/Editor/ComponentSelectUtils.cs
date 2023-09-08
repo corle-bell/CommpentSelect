@@ -7,7 +7,7 @@ namespace ComponentSelect
 {
     public class ComponentSelectUtils
     {
-        public static string FormatDesc(Component component, string _root, bool includeChildren)
+        public static string FormatDesc(Component component, string _root, bool includeChildren, bool includeType=true)
         {
             var fullName = component.transform.HierarchyName().Split(new char[] { '/' });
             int index = Array.IndexOf(fullName, _root);
@@ -17,8 +17,18 @@ namespace ComponentSelect
                 name += fullName[i];
                 name += i < fullName.Length - 1 ? "->" : "";
             }
-            return includeChildren ? $"{name}/{component.GetType()}" : $"{component.GetType()}";
+
+            if (includeType)
+            {
+                return includeChildren ? $"{name}/{component.GetType()}" : $"{component.GetType()}";
+            }
+            else
+            {
+                return $"{name}";
+            }
         }
+        
+       
     }
 
 }

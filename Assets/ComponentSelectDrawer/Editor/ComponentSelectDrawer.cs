@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -23,32 +24,33 @@ namespace ComponentSelect
 
             switch (attr.style)
             {
+                case Style.DropDown:
+                    DrawDropDown(position, property);
+                    break;
                 case Style.PopUp:
                     DrawPopUp(position, property);
-                    break;
-                case Style.Button:
-                    DrawButton(position, property);
                     break;
             }
 
 
         }
 
-        private void DrawButton(Rect position, SerializedProperty property)
+        private void DrawPopUp(Rect position, SerializedProperty property)
         {
             Rect src = new Rect(position);
-            src.width = position.width * 0.7f;
+            src.width = position.width * 0.85f-18;
             EditorGUI.PropertyField(src, property);
 
-            src.x = position.width -80;
-            src.width = 80;
+            src.width = position.width*0.15f+18;
+            src.x = position.width*0.85f;
+            
             if (GUI.Button(src, "Select"))
             {
                 ComponentSelectWindow.Open(property, attribute as ComponentSelectAttribute);
             }
         }
 
-        private void DrawPopUp(Rect position, SerializedProperty property)
+        private void DrawDropDown(Rect position, SerializedProperty property)
         {
             UpdateParams(property);
             int i = selectIndex;
@@ -88,16 +90,47 @@ namespace ComponentSelect
                     }
                 }
 
+                Dictionary<string, int> TypeCounter = new Dictionary<string, int>();
+                Dictionary<int, int> IdCounter = new Dictionary<int, int>();
+                for (int i = 0; i < componentlist.Length; i++)
+                {
+                    string key = componentlist[i].transform.HierarchyName()+"#"+componentlist[i].GetType();
+                    int count = 0;
+                    if (TypeCounter.TryGetValue(key, out count))
+                    {
+                        count++;
+                        TypeCounter[key] = count;
+                    }
+                    else
+                    {
+                        TypeCounter.Add(key, count);
+                    }
+                    
+                    IdCounter.Add(componentlist[i].GetInstanceID(), count);
+                }
+                
                 componentDesc = new string[componentlist.Length];
                 for (int i = 0; i < componentDesc.Length; i++)
                 {
-                    componentDesc[i] = ComponentSelectUtils.FormatDesc(componentlist[i], root.name, attr.includeChildren);
+                    string key = componentlist[i].transform.HierarchyName()+"#"+componentlist[i].GetType();
+
+                    if (TypeCounter[key]==0)
+                    {
+                        componentDesc[i] = ComponentSelectUtils.FormatDesc(componentlist[i], root.name, attr.includeChildren);
+                    }
+                    else
+                    {
+                        componentDesc[i] = $"{ComponentSelectUtils.FormatDesc(componentlist[i], root.name, attr.includeChildren)} [{IdCounter[componentlist[i].GetInstanceID()]}]";
+                    }
 
                     if (componentlist[i] == property.objectReferenceValue)
                     {
                         selectIndex = i;
                     }
                 }
+                
+                TypeCounter.Clear();
+                IdCounter.Clear();
             }
         }
 

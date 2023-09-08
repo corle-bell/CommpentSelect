@@ -14,8 +14,8 @@ namespace ComponentSelect
 {
     public enum Style
     {
+        DropDown,
         PopUp,
-        Button,
     }
     
     

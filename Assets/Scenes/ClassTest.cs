@@ -5,16 +5,16 @@ using ComponentSelect;
 
 public class ClassTest : MonoBehaviour
 {
-    [ComponentSelect(true)]
+    [ComponentSelect(true, typeof(Component), Style.DropDown)]
     public Component script0;
 
     [ComponentSelect(true, typeof(ClassBasic))]
-    public Component script1;
+    public ClassBasic script1;
 
     [ComponentSelect(true, typeof(ClassA))]
     public Component script2;
 
-    [ComponentSelect(true, typeof(Component), Style.Button)]
+    [ComponentSelect(true, typeof(Component), Style.PopUp)]
     public Component script3;
     // Start is called before the first frame update
     void Start()
