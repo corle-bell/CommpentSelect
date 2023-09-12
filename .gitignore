@@ -9,4 +9,5 @@ obj
 *.csproj
 *.sln
 .svn
+.idea
 Z_Resource
