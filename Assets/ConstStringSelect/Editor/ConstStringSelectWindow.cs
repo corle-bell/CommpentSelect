@@ -149,6 +149,11 @@ namespace Bm.Drawer
                     selectClass = classIndex = i;
                 }
             }
+
+            if (selectClass < 0 && classDesc.Length > 0)
+            {
+                selectClass = 0;
+            }
         }
 
         private FiledData[] InitCSC(Type t, out bool _isSelect, string _default)
