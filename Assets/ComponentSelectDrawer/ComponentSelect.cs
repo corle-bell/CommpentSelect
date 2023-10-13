@@ -10,7 +10,7 @@ using UnityEngine;
 using System;
 
 
-namespace ComponentSelect
+namespace Bm.Drawer
 {
     public enum Style
     {

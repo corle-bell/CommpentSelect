@@ -3,7 +3,7 @@ using UnityEditor;
 using System;
 using System.Reflection;
 
-namespace ComponentSelect
+namespace Bm.Drawer
 {
     public class ComponentSelectWindow : EditorWindow
     {

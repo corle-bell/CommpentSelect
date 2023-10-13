@@ -25,3 +25,29 @@
 
 
 
+# ConstStringSelect
+常量字符串选择器
+
+``` javascript
+[ConstStringContent]
+public class UIStringDefine
+{
+    public const string UI_Title = "This is Title";
+    public const string UI_Hp = "This is Hp";
+    public const string UI_Level = "This is Hp";
+}
+
+public class ClassTest : MonoBehaviour
+{
+    [ConstStringSelect]
+    public string text0;
+}
+```
+
+### Editor界面显示
+![Image text](https://github.com/corle-bell/ComponentSelect/blob/main/Screenshoot/ConstStringSelect.png)
+
+
+
+### 特性使用
+![Image text](https://github.com/corle-bell/ComponentSelect/blob/main/Screenshoot/ConstStringSelect_Code.png)

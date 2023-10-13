@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-namespace ComponentSelect
+namespace Bm.Drawer
 {
     [CustomPropertyDrawer(typeof(ComponentSelectAttribute))]
 

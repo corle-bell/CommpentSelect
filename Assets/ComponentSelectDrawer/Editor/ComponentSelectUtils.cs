@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace ComponentSelect
+namespace Bm.Drawer
 {
     public class ComponentSelectUtils
     {
