@@ -51,3 +51,39 @@ public class ClassTest : MonoBehaviour
 
 ### 特性使用
 ![Image text](https://github.com/corle-bell/ComponentSelect/blob/main/Screenshoot/ConstStringSelect_Code.png)
+
+
+# CustomLabelList
+自定义数组标题
+兼容Odin插件
+
+``` javascript
+
+public enum UIName
+{
+    Loading,
+    Game,
+    Shop,
+    Setting
+}
+
+[CustomLabelList(typeof(UIName))]
+public string[] UiTitle;
+
+
+[CustomLabelList("_UIOrder_Labels")]
+public int[] UiOrder;
+
+private static string[] _UIOrder_Labels = new string[]
+{
+	"String_Loading",
+	"String_Game",
+	"String_Shop",
+	"String_Setting",
+};
+```
+
+### Editor界面显示
+![Image text](https://github.com/corle-bell/ComponentSelect/blob/main/Screenshoot/CustomLabelList_Editor.png)
+
+![Image text](https://github.com/corle-bell/ComponentSelect/blob/main/Screenshoot/CustomLabelList_Editor_Odin.png)

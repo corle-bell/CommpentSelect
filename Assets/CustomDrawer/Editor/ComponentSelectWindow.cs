@@ -166,7 +166,7 @@ namespace Bm.Drawer
                 iconList = new Texture2D[componentDesc.Length];
                 for (int i = 0; i < componentDesc.Length; i++)
                 {
-                    componentDesc[i] = ComponentSelectUtils.FormatDesc(componentlist[i], root.name, attr.includeChildren, false);
+                    componentDesc[i] = DrawerUtils.FormatDesc(componentlist[i], root.name, attr.includeChildren, false);
 
                     var ic = FindTexture(componentlist[i].GetType());
                     iconList[i] = ic==null?defaultTex:ic as Texture2D;

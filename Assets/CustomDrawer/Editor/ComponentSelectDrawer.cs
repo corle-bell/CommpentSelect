@@ -116,11 +116,11 @@ namespace Bm.Drawer
 
                     if (TypeCounter[key]==0)
                     {
-                        componentDesc[i] = ComponentSelectUtils.FormatDesc(componentlist[i], root.name, attr.includeChildren);
+                        componentDesc[i] = DrawerUtils.FormatDesc(componentlist[i], root.name, attr.includeChildren);
                     }
                     else
                     {
-                        componentDesc[i] = $"{ComponentSelectUtils.FormatDesc(componentlist[i], root.name, attr.includeChildren)} [{IdCounter[componentlist[i].GetInstanceID()]}]";
+                        componentDesc[i] = $"{DrawerUtils.FormatDesc(componentlist[i], root.name, attr.includeChildren)} [{IdCounter[componentlist[i].GetInstanceID()]}]";
                     }
 
                     if (componentlist[i] == property.objectReferenceValue)

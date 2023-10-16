@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Bm.Drawer;
 
+public enum UIName
+{
+    Loading,
+    Game,
+    Shop,
+    Setting
+}
+
 public class ClassTest : MonoBehaviour
 {
     [ComponentSelect(true, typeof(Component), Style.DropDown)]
@@ -23,6 +31,13 @@ public class ClassTest : MonoBehaviour
     
     [ConstStringSelect]
     public string text1;
+
+    [CustomLabelList(typeof(UIName))]
+    public string[] UiTitle;
+    
+    
+    [CustomLabelList("_UIOrder_Labels")]
+    public int[] UiOrder;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +48,10 @@ public class ClassTest : MonoBehaviour
         
         Debug.Log($"text0 = {text0}");
         Debug.Log($"text1 = {text1}");
+        
+        
+        Debug.Log($"{UIName.Loading} = {UiTitle[(int)UIName.Loading]}");
+        Debug.Log($"{UIName.Shop} = {UiTitle[(int)UIName.Shop]}");
     }
 
     // Update is called once per frame
@@ -40,4 +59,14 @@ public class ClassTest : MonoBehaviour
     {
         
     }
+    
+    #if UNITY_EDITOR
+    private static string[] _UIOrder_Labels = new string[]
+    {
+        "String_Loading",
+        "String_Game",
+        "String_Shop",
+        "String_Setting",
+    };
+    #endif
 }
