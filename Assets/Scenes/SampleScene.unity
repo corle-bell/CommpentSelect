@@ -214,6 +214,12 @@ MonoBehaviour:
   script3: {fileID: 223702377}
   text0: Game_Play
   text1: This is Hp
+  UiTitle:
+  - This is Loading
+  - This is Game
+  - This is Shop
+  - This is Setting
+  UiOrder: 040000000500000043000000
 --- !u!114 &296866799
 MonoBehaviour:
   m_ObjectHideFlags: 0
