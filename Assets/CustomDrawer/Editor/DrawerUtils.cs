@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Text.RegularExpressions;
 
 namespace Bm.Drawer
 {
@@ -26,6 +27,12 @@ namespace Bm.Drawer
             {
                 return $"{name}";
             }
+        }
+
+        public static string GetValueInSquareBracket(string _text)
+        {
+            Regex rgx = new Regex(@"(?i)(?<=\[)(.*)(?=\])");//中括号[]
+            return rgx.Match(_text).Value;
         }
         
         /// <summary>

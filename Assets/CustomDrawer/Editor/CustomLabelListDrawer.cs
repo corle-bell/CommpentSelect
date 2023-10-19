@@ -30,8 +30,7 @@ namespace Bm.Drawer
             if (id<0)
             #endif
             {
-                Regex rgx = new Regex(@"(?i)(?<=\[)(.*)(?=\])");//中括号[]
-                string tmp = rgx.Match(property.propertyPath).Value;
+                string tmp = DrawerUtils.GetValueInSquareBracket(property.propertyPath);
                 id = int.Parse(tmp);
             }
 

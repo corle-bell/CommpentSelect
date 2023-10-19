@@ -41,19 +41,82 @@ namespace Bm.Drawer
         protected int selectClass = -1;
         public Component root;
         public string fieldName;
-        private Material m_material;
-
-
-        private Vector2 scroll; 
+        public object propertyRoot;
+        private int ArrayIndex = -1;
+        private Vector2 scroll;
+        private bool autoClose;
         public void Init(SerializedProperty _serializedProperty, ConstStringSelectAttribute _atr)
         {
             serializedProperty = _serializedProperty;
-            root = (_serializedProperty.serializedObject.targetObject as Component);
-            fieldName = _serializedProperty.propertyPath;
+            propertyRoot = root = (_serializedProperty.serializedObject.targetObject as Component);
 
+            autoClose = _atr.isAutoClose;
+            
+            GetPropertyName(_serializedProperty.propertyPath);
             InitList(_serializedProperty.stringValue);
         }
-    
+
+        private void GetPropertyName(string _path)
+        {
+            _path = _path.Replace("Array.data", "");
+            string[] name_parts = _path.Split(new[] { '.' });
+
+            if (name_parts.Length == 1)
+            {
+                fieldName = name_parts[0];
+                return;
+            }
+
+            if (name_parts.Length > 1)
+            {
+                if (_path.Contains("["))
+                {
+                    object obj = propertyRoot;
+                    for (int i = 0; i < name_parts.Length; i++)
+                    {
+                        if (name_parts[i].StartsWith("["))
+                        {
+                            var key = DrawerUtils.GetValueInSquareBracket(name_parts[i]);
+                            int id = int.Parse(key);
+                            
+                            if (i == name_parts.Length - 1) //string数组
+                            {
+                                ArrayIndex = id;
+                                propertyRoot = obj;
+                                return;
+                            }
+                            else if (i==name_parts.Length-2) //property在数组里
+                            {
+                                obj = (obj as Array).GetValue(id);
+                               
+                                fieldName = name_parts[name_parts.Length - 1];
+                                propertyRoot = obj;
+                                return;
+                            }
+                            
+                            obj = (obj as Array).GetValue(id);
+                        }
+                        else
+                        {
+                            var t = obj.GetType();
+                            var f = t.GetField(name_parts[i]);
+                            obj = f.GetValue(obj);
+                        }
+                    }
+                }
+                else
+                {
+                    object obj = propertyRoot;
+                    for (int i = 0; i < name_parts.Length-1; i++)
+                    {
+                        obj = obj.GetType().GetField(name_parts[i]).GetValue(obj);
+                    }
+
+                    propertyRoot = obj;
+                    fieldName = name_parts[name_parts.Length - 1];
+                }
+            }
+        }
 
         private void OnGUI()
         {
@@ -96,6 +159,11 @@ namespace Bm.Drawer
                         stringIndex = i;
                         classIndex = selectClass;
                         SetString(data.content);
+
+                        if (autoClose)
+                        {
+                            this.Close();
+                        }
                     }
                 }
                
@@ -108,7 +176,14 @@ namespace Bm.Drawer
       
         protected void SetString(string _text)
         {
-            root.GetType().GetField(fieldName).SetValue(root, _text);
+            if (ArrayIndex>=0)
+            {
+                (propertyRoot as string[])[ArrayIndex] = _text;
+            }
+            else
+            {
+                propertyRoot.GetType().GetField(fieldName).SetValue(propertyRoot, _text);
+            }
             EditorUtility.SetDirty(root);
         }
 

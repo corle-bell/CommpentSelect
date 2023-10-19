@@ -13,8 +13,13 @@ using System;
 namespace Bm.Drawer
 {
     [AttributeUsage(AttributeTargets.Field)]
-    public class ConstStringSelectAttribute : PropertyAttribute {
-      
+    public class ConstStringSelectAttribute : PropertyAttribute 
+    {
+        public bool isAutoClose;
+        
+        public ConstStringSelectAttribute(bool _isAutoClose=true) {
+            this.isAutoClose = _isAutoClose;
+        }
     }
     
     [System.AttributeUsage(System.AttributeTargets.Class)]
