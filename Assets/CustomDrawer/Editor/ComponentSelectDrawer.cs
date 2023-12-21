@@ -25,21 +25,21 @@ namespace Bm.Drawer
             switch (attr.style)
             {
                 case Style.DropDown:
-                    DrawDropDown(position, property);
+                    DrawDropDown(position, property, label);
                     break;
                 case Style.PopUp:
-                    DrawPopUp(position, property);
+                    DrawPopUp(position, property, label);
                     break;
             }
 
 
         }
 
-        private void DrawPopUp(Rect position, SerializedProperty property)
+        private void DrawPopUp(Rect position, SerializedProperty property, GUIContent label)
         {
             Rect src = new Rect(position);
             src.width = position.width * 0.85f-18;
-            EditorGUI.PropertyField(src, property);
+            EditorGUI.PropertyField(src, property, label);
 
             src.width = position.width*0.15f+18;
             src.x = position.width*0.85f;
@@ -50,11 +50,13 @@ namespace Bm.Drawer
             }
         }
 
-        private void DrawDropDown(Rect position, SerializedProperty property)
+        private void DrawDropDown(Rect position, SerializedProperty property, GUIContent label )
         {
+            var text = ObjectNames.NicifyVariableName(label.text);
+                
             UpdateParams(property);
             int i = selectIndex;
-            selectIndex = EditorGUI.Popup(position, property.name, selectIndex, componentDesc);
+            selectIndex = EditorGUI.Popup(position, text, selectIndex, componentDesc);
             if (i != selectIndex && selectIndex >= 0)
             {
                 property.objectReferenceValue = componentlist[selectIndex];
