@@ -38,6 +38,15 @@ public class ClassTest : MonoBehaviour
     
     [CustomLabelList("_UIOrder_Labels")]
     public int[] UiOrder;
+
+    [ShowTimeStamp(true)]
+    public int TimeTicks0 = 1706777351;
+    
+    [ShowTimeStamp("yyyy/MM/dd HH:mm:ss", 60,true)]
+    public int TimeTicks1 = 1706777351;
+    
+    [ShowTimeStamp(60)]
+    public int TimeTicks2 = 28446289;
     // Start is called before the first frame update
     void Start()
     {
