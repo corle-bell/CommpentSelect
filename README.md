@@ -7,9 +7,11 @@
 public int TimeTicks1 = 1706777351;
 ```
 
-参数1：显示格式
-参数2：时间戳比例, 60的话就是相当于，以分钟作为时间戳
-参数3：是否显示为当前时区
+参数1：显示格式 
+
+参数2：时间戳比例, 60的话就是相当于，以分钟作为时间戳 
+
+参数3：是否显示为当前时区 
 
 ### Editor界面显示
 ![Image text](https://github.com/corle-bell/ComponentSelect/blob/main/Screenshoot/ShowTimeStamp.png)
