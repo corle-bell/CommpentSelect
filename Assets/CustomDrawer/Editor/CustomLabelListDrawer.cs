@@ -47,7 +47,17 @@ namespace Bm.Drawer
             
             if (clla.EnumType!=null)
             {
-                name_list = Enum.GetNames(clla.EnumType);
+                var arr = Enum.GetValues(clla.EnumType) as int[];
+                var arr_name = Enum.GetNames(clla.EnumType);
+                name_list = new string[DrawerUtils.FindMax(arr)+1];
+                for(int i=0; i<arr.Length; i++)
+                {
+                    int id = arr[i];
+                    if (id >= 0)
+                    {
+                        name_list[id] = arr_name[i];
+                    }
+                }
             }
             
             if (clla.FieldName!=null)
