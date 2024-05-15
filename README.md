@@ -1,8 +1,27 @@
+# ClassVariableSelect
+
+选择类中的字段
+
+```csharp
+ [ClassVariableSelect(typeof(TableItem), typeof(int), "_", false)]
+    public string dataPath;
+```
+
+参数1：类型
+
+参数2：要筛选的类型
+
+参数3：字段名称过滤表达式
+
+参数4：字段名称过滤的Match值
+
+![Image text](https://github.com/corle-bell/ComponentSelect/blob/main/Screenshoot/ClassVariableSelect.png)
 
 # ShowTimeStamp
+
 格式化显示时间戳
 
-``` javascript
+```csharp
 [ShowTimeStamp("yyyy/MM/dd HH:mm:ss", 60,true)]
 public int TimeTicks1 = 1706777351;
 ```
@@ -14,12 +33,14 @@ public int TimeTicks1 = 1706777351;
 参数3：是否显示为当前时区 
 
 ### Editor界面显示
+
 ![Image text](https://github.com/corle-bell/ComponentSelect/blob/main/Screenshoot/ShowTimeStamp.png)
+
 # ComponentSelect
 
 选择脚本选择器
 
-``` javascript
+```csharp
 [ComponentSelect(true, typeof(Component), Style.PopUp)]
 ```
 
@@ -32,19 +53,24 @@ public int TimeTicks1 = 1706777351;
 ### Editor界面显示
 
 ![Image text](https://github.com/corle-bell/ComponentSelect/blob/main/Screenshoot/QQ截图20230827114033.png)
+
 ### 特性使用代码示例
+
 ![Image text](https://github.com/corle-bell/ComponentSelect/blob/main/Screenshoot/Code.png)
+
 ### 弹窗界面展示
+
 ![Image text](https://github.com/corle-bell/ComponentSelect/blob/main/Screenshoot/PopUp.png)
+
 ### 下拉列表展示
+
 ![Image text](https://github.com/corle-bell/ComponentSelect/blob/main/Screenshoot/DropDown.png)
 
-
-
 # ConstStringSelect
+
 常量字符串选择器
 
-``` javascript
+```csharp
 [ConstStringContent]
 public class UIStringDefine
 {
@@ -61,20 +87,19 @@ public class ClassTest : MonoBehaviour
 ```
 
 ### Editor界面显示
+
 ![Image text](https://github.com/corle-bell/ComponentSelect/blob/main/Screenshoot/ConstStringSelect.png)
 
-
-
 ### 特性使用
+
 ![Image text](https://github.com/corle-bell/ComponentSelect/blob/main/Screenshoot/ConstStringSelect_Code.png)
 
-
 # CustomLabelList
+
 自定义数组标题
 兼容Odin插件
 
-``` javascript
-
+```csharp
 public enum UIName
 {
     Loading,
@@ -92,14 +117,15 @@ public int[] UiOrder;
 
 private static string[] _UIOrder_Labels = new string[]
 {
-	"String_Loading",
-	"String_Game",
-	"String_Shop",
-	"String_Setting",
+    "String_Loading",
+    "String_Game",
+    "String_Shop",
+    "String_Setting",
 };
 ```
 
 ### Editor界面显示
+
 ![Image text](https://github.com/corle-bell/ComponentSelect/blob/main/Screenshoot/CustomLabelList_Editor.png)
 
 ![Image text](https://github.com/corle-bell/ComponentSelect/blob/main/Screenshoot/CustomLabelList_Editor_Odin.png)
