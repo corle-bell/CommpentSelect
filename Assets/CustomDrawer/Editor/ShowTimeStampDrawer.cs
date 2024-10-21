@@ -40,12 +40,23 @@ namespace Bm.Drawer
                     dateTimeOffset = DateTimeOffset.ParseExact(outStr, attr.format, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
                 }
                 
-                property.intValue = (int)dateTimeOffset.ToUnixTimeSeconds()/attr.coefficient;
+                property.intValue = (int)(dateTimeOffset.ToUnixTimeSeconds()/attr.coefficient);
             }
             
             src.x += src.width+18f;
             src.width = position.width * 0.3f - 18f;
+            
+            
+            #if UNITY_2020_1_OR_NEWER
+            var str = property.intValue.ToString();
+            var newStr = EditorGUI.DelayedTextField(src, property.intValue.ToString());
+            if (!newStr.Equals(str))
+            {
+                property.intValue = int.Parse(newStr);
+            }
+            #else
             property.intValue = EditorGUI.DelayedIntField(src, property.intValue);
+            #endif
         }
 
         private string Format(int _time, string _format, bool isLocal)
